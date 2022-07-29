@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div>
+
+    <h1>Enter number of paragraphs and click to generate lorem ipsum text.</h1>
+
+    <hr />
+
+    <div>
+        <form method="post">
+            <label>
+                Paragraphs to generate:
+                <input name="paragraphs" type="number" min="1" max="50" required />
+            </label>
+            <input type="submit" value="generate!" />
+        </form>
+    </div>
+
+    <hr />
+
+    @foreach (string generatedParagraph in this.Model.GeneratedParagraphs)
+    {
+        <p>@generatedParagraph</p>
+    }
+
+</div>
