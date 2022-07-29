@@ -1,0 +1,37 @@
+services:
+    lorem-ipsum-ui:
+        build: ./LoremIpsum.UI
+        #volumes:
+            #- lorem-ipsum-ui-code2:/usr/share/nginx/html
+            #- /mnt/c/Users/spistone/Desktop/BLOG/compose:/usr/share/nginx/html
+        ports:
+            - "8080:80"
+        environment:
+            - ASPNETCORE_URLS=http://lorem-ipsum-ui:80
+            - APPSETTING_LoremIpsumApi:BaseUrl=http://lorem-ipsum-api:8080
+        networks:
+            - front-tier
+            - back-tier
+
+    lorem-ipsum-api:
+        build: ./LoremIpsum.API
+        #ports:
+        #   - "8080:8080"
+        environment:
+            - ASPNETCORE_URLS=http://lorem-ipsum-api:8080
+        networks:
+            - front-tier
+            - back-tier
+
+#volumes:
+#    lorem-ipsum-ui-code:
+#        driver: local
+#        driver_opts:
+#            type: none
+#            o: bind
+#            device: /mnt/c/Users/spistone/Desktop/BLOG/compose
+
+networks:
+    # The presence of these objects is sufficient to define them
+    front-tier: {}
+    back-tier: {}

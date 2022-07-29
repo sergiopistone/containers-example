@@ -30,6 +30,13 @@ namespace LoremIpsum.UI.Pages
             this.GeneratedParagraphs = await FetchLorenIpsumParagraphs(paragraphs);
         }
 
+        private async Task<IEnumerable<string>> DummyFetchLorenIpsumParagraphs(int paragraphs)
+        {
+            return Enumerable.Range(1, paragraphs)
+                .Select(paragraph => $"Paragraph {paragraph}")
+                .ToArray();
+        }
+
         private async Task<IEnumerable<string>> FetchLorenIpsumParagraphs(int paragraphs)
         {
             var httpRequestMessage = new HttpRequestMessage(
